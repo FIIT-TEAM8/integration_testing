@@ -22,6 +22,9 @@ jobs:
         with:
           time: '60s'
       
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
       - name: Executing integration tests
         run: |
           curl -u test:test localhost:6800/schedule.json -d spider=news_spider -d project=default -d search_from=2022-04-05 -d search_to=2022-04-05 -d locale=en-gb -d crimes_file='list_of_crimes_english.txt'
