@@ -3,7 +3,7 @@ from pymongo import MongoClient
 import requests
 
 #local_mongo_uri = 'mongodb://localhost:27017/ams'
-local_mongo_uri = 'mongodb://test:test@localhost:27017/ams'
+local_mongo_uri = 'mongodb://test:test@localhost:27017/'
 mongo_username = 'test'
 mongo_password = 'test'
 
