@@ -17,10 +17,10 @@ jobs:
       - name: Build the stack
         run: docker-compose --env-file testing.env up -d
       
-      - name: Sleep for 30 seconds
+      - name: Sleep for 100 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '30s'
+          time: '100s'
       
       - name: Install dependencies
         run: pip install -r requirements.txt
