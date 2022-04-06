@@ -15,9 +15,9 @@ print("The number of documents in collection : ", mydoc)
 
 ES_HOST = 'localhost'
 ES_PORT = 9200
-ES_USER = 'test'
+ES_USER = 'elastic'
 ES_PASSWORD = 'test'
-ELASTIC_INDEX_NAME = 'main'
+ELASTIC_INDEX_NAME = 'articles_index'
 ES_PROTOCOL="https"
 
 ES_SEARCH_STRING = "{protocol}://{host}:{port}/{index}/_count".format(
