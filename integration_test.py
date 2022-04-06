@@ -16,6 +16,6 @@ my_database = my_client["ams"]
 my_collection = my_database["articles"]
   
 # number of documents in the collection
-mydoc = my_collection.find().count_documents()
+mydoc = my_collection.find().count()
 print("The number of documents in collection : ", mydoc) 
     
