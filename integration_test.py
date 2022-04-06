@@ -1,6 +1,7 @@
 from pymongo import MongoClient
+import requests
 
-local_mongo_uri = 'mongodb://localhost:27017'
+local_mongo_uri = 'mongodb://mongo_db'
 mongo_username = 'test'
 mongo_password = 'test'
 
@@ -17,5 +18,12 @@ my_collection = my_database["articles"]
   
 # number of documents in the collection
 mydoc = my_collection.find().count()
-print("The number of documents in collection : ", mydoc) 
+print("The number of documents in collection : ", mydoc)
+
+param = (('v', ''),) # '-v' is for --verbose
+
+resp = requests.get('http://localhost:9200/_cat/indices', params=param)
+print ('\nHTTP code:', resp.status_code, '-- response:', resp, '\n')
+print ('dir:', dir(resp), '\n')
+print ('response text:', resp.text)
     
