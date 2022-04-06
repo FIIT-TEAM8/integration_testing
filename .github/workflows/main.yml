@@ -17,10 +17,10 @@ jobs:
       - name: Build the stack
         run: docker-compose --env-file testing.env up -d
       
-      - name: Sleep for 200 seconds
+      - name: Sleep for 60 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '200s'
+          time: '60s'
       
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -30,10 +30,20 @@ jobs:
           curl -u test:test localhost:6800/schedule.json -d spider=news_spider -d project=default -d search_from=2022-04-04 -d search_to=2022-04-05 -d locale=en-gb -d crimes_file=list_of_crimes_english.txt
         shell: bash
       
-      - name: Sleep for 30 seconds
+      - name: Sleep for 20 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '30s'
+          time: '20s'
+      
+      - name: Stopping scraper
+        run: |
+          curl -u test:test http://localhost:6800/cancel.json -d project=default -d job={}
+        shell: bash
+      
+      - name: Sleep for 10 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '10s'
         
       - name: Executing integration tests
         run: |
