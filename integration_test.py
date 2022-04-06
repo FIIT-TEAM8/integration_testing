@@ -1,17 +1,21 @@
+from threading import local
 from pymongo import MongoClient
 import requests
 
-local_mongo_uri = 'mongodb://localhost:27017/ams'
+#local_mongo_uri = 'mongodb://localhost:27017/ams'
+local_mongo_uri = 'mongodb://test:test@localhost:27017/ams'
 mongo_username = 'test'
 mongo_password = 'test'
 
 # connect to local MongoDB container
-my_client = MongoClient(
-    host = local_mongo_uri,
-    serverSelectionTimeoutMS = 3000,
-    username = mongo_username,
-    password = mongo_password
-)
+# my_client = MongoClient(
+#     host = local_mongo_uri,
+#     serverSelectionTimeoutMS = 3000,
+#     username = mongo_username,
+#     password = mongo_password
+# )
+
+my_client = MongoClient(local_mongo_uri)
   
 my_database = my_client["ams"]  
 my_collection = my_database["articles"]
