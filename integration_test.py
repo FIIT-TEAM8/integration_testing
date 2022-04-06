@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-local_mongo_uri = 'mongodb://mongodb0.example.com:27017'
+local_mongo_uri = 'mongodb://localhost:27020'
 mongo_username = 'test'
 mongo_password = 'test'
 
