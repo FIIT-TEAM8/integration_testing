@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+            
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+        name: Build the docker-compose stack
+        run: docker-compose up -d
+      
+      - name: Sleep for 60 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '60s'
+      
+      - name: Executing integration tests
+        uses: actions/checkout@v3
+        run: |
+          curl -u ${{ secrets.SCRAPER_USERNAME }}:${{ secrets.SCRAPER_PASSWORD }} localhost:6800/schedule.json -d spider=news_spider -d project=default -d search_from=2022-04-05 -d search_to=2022-04-05 -d locale=en-gb -d crimes_file='list_of_crimes_english.txt'
+          python integration_test.py
