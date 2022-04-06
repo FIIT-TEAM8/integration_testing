@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the docker-compose stack
-        run: docker-compose up -d
+        run: docker-compose --env-file testing.env up 
       
       - name: Sleep for 60 seconds
         uses: jakejarvis/wait-action@master
