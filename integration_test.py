@@ -13,9 +13,27 @@ my_collection = my_database["articles"]
 mydoc = my_collection.find().count()
 print("The number of documents in collection : ", mydoc)
 
-param = (('v', ''),) # '-v' is for --verbose
+ES_HOST = 'localhost'
+ES_PORT = 9200
+ES_USER = 'test'
+ES_PASSWORD = 'test'
+ELASTIC_INDEX_NAME = 'main'
+ES_PROTOCOL="https"
 
-resp = requests.get('https://es01:9200/_cat/indices', params=param)
+ES_SEARCH_STRING = "{protocol}://{host}:{port}/{index}/_count".format(
+    protocol=ES_PROTOCOL,
+    host=ES_HOST,
+    port=ES_PORT,
+    index=ELASTIC_INDEX_NAME
+    )
+
+headers = {}
+resp = requests.get(ES_SEARCH_STRING, 
+            headers=headers, 
+            json={}, 
+            verify=False, 
+            auth=(ES_USER, ES_PASSWORD))
+
 print ('\nHTTP code:', resp.status_code, '-- response:', resp, '\n')
 print ('dir:', dir(resp), '\n')
 print ('response text:', resp.text)
