@@ -15,7 +15,7 @@ print("The number of documents in collection : ", mydoc)
 
 param = (('v', ''),) # '-v' is for --verbose
 
-resp = requests.get('http://es01:9200/_cat/indices', params=param)
+resp = requests.get('https://es01:9200/_cat/indices', params=param)
 print ('\nHTTP code:', resp.status_code, '-- response:', resp, '\n')
 print ('dir:', dir(resp), '\n')
 print ('response text:', resp.text)
