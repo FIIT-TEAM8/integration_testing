@@ -17,16 +17,25 @@ jobs:
       - name: Build the stack
         run: docker-compose --env-file testing.env up -d
       
-      - name: Sleep for 100 seconds
+      - name: Sleep for 60 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '100s'
+          time: '60s'
       
       - name: Install dependencies
         run: pip install -r requirements.txt
       
+      - name: Scraping articles
+        run: |
+          curl -u test:test localhost:6800/schedule.json -d spider=news_spider -d project=default -d search_from=2022-04-04 -d search_to=2022-04-05 -d locale=en-gb -d crimes_file=list_of_crimes_english.txt
+        shell: bash
+      
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30s'
+        
       - name: Executing integration tests
         run: |
-          curl -u test:test localhost:6800/schedule.json -d spider=news_spider -d project=default -d search_from=2022-04-05 -d search_to=2022-04-05 -d locale=en-gb -d crimes_file=list_of_crimes_english.txt
           python integration_test.py
         shell: bash
