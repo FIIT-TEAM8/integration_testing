@@ -26,9 +26,7 @@ jobs:
         run: pip install -r requirements.txt
       
       - name: Scraping articles
-        run: |
-          curl -u test:test localhost:6800/schedule.json -d spider=news_spider -d project=default -d search_from=2022-04-04 -d search_to=2022-04-05 -d locale=en-gb -d crimes_file=list_of_crimes_english.txt
-        shell: bash
+        run: curl -u test:test localhost:6800/schedule.json -d spider=news_spider -d project=default -d search_from=2022-04-04 -d search_to=2022-04-05 -d locale=en-gb -d crimes_file=list_of_crimes_english.txt
       
       - name: Sleep for 20 seconds
         uses: jakejarvis/wait-action@master
@@ -36,9 +34,7 @@ jobs:
           time: '20s'
       
       - name: Stopping scraper
-        run: |
-          curl -u test:test http://localhost:6800/cancel.json -d project=default -d job={}
-        shell: bash
+        run: curl -u test:test http://localhost:6800/cancel.json -d project=default -d job={}
       
       - name: Sleep for 10 seconds
         uses: jakejarvis/wait-action@master
@@ -46,6 +42,4 @@ jobs:
           time: '10s'
         
       - name: Executing integration tests
-        run: |
-          python integration_test.py
-        shell: bash
+        run: python integration_test.py
