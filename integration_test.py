@@ -27,10 +27,7 @@ ES_SEARCH_STRING = "{protocol}://{host}:{port}/{index}/_count".format(
     index=ELASTIC_INDEX_NAME
     )
 
-headers = {}
 resp = requests.get(ES_SEARCH_STRING, 
-            headers=headers, 
-            json={}, 
             verify=False, 
             auth=(ES_USER, ES_PASSWORD))
 
