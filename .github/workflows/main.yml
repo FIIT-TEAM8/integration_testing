@@ -44,5 +44,5 @@ jobs:
       - name: Executing integration tests
         run: |
           output = $(python integration_test.py)
-          if [[ "$output" == "SUCCESS" ]]; then exit 1
+          if [[ "$output" != "SUCCESS" ]]; then exit 1
           
