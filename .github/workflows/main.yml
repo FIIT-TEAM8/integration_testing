@@ -17,10 +17,10 @@ jobs:
       - name: Build the stack
         run: docker-compose --env-file testing.env up -d
       
-      - name: Sleep for 120s seconds
+      - name: Sleep for 60s seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '120s'
+          time: '60s'
       
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -42,4 +42,7 @@ jobs:
           time: '10s'
         
       - name: Executing integration tests
-        run: python integration_test.py
+        run: |
+          output = $(python integration_test.py)
+          if [[ "$output" -eq 1 ]]; then exit 1
+          
