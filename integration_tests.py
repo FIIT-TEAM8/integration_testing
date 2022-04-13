@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 import requests
+import os
 
 MONGO_URI_LOCAL = 'mongodb://test:test@mongo_db:27017/'
 MONGODB_DB = "ams"
