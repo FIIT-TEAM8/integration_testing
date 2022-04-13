@@ -44,5 +44,5 @@ jobs:
           time: '10s'
         
       - name: Executing integration tests
-        run: docker run --entrypoint ping --network integration_testing_default fiitteam8/tester -c 4 mongo_db
+        run: docker run --env-file testing.env --network integration_testing_default fiitteam8/tester
           
