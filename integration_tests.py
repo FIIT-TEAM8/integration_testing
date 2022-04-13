@@ -2,7 +2,16 @@ from pymongo import MongoClient
 import requests
 import os
 
-MONGO_URI_LOCAL = 'mongodb://test:test@mongo_db:27017/'
+MONGODB_USER = "test"
+MONGODB_PASSWORD = "test"
+MONGODB_SERVER = "mongo_db"
+MONGODB_PORT = 27017
+
+MONGODB_URI = "mongodb://{user}:{password}@{server_url}:{port}/".format(user=MONGODB_USER, 
+                                                                        password=MONGODB_PASSWORD, 
+                                                                        server_url=MONGODB_SERVER, 
+                                                                        port=MONGODB_PORT)
+
 MONGODB_DB = "ams"
 MONGODB_COLLECTION = "articles"
 
@@ -13,7 +22,7 @@ ES_INDEX_NAME = "articles_index"
 ES_USER = "elastic"
 ES_PASSWORD = "test"
 
-my_client = MongoClient(MONGO_URI_LOCAL)
+my_client = MongoClient(MONGODB_URI)
 my_database = my_client[MONGODB_DB]  
 my_collection = my_database[MONGODB_COLLECTION]
 
