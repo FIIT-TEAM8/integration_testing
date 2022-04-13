@@ -1,12 +1,12 @@
 from pymongo import MongoClient
 import requests
 
-MONGO_URI_LOCAL = 'mongodb://test:test@localhost:27017/'
+MONGO_URI_LOCAL = 'mongodb://test:test@mongo_db:27017/'
 MONGODB_DB = "ams"
 MONGODB_COLLECTION = "articles"
 
 ES_PROTOCOL = "https"
-ES_HOST = "localhost"
+ES_HOST = "es01"
 ES_PORT = 9200
 ES_INDEX_NAME = "articles_index"
 ES_USER = "elastic"
