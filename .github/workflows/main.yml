@@ -44,7 +44,5 @@ jobs:
           time: '10s'
         
       - name: Executing integration tests
-        run: |
-          output = $(python integration_tests.py)
-          if [[ "$output" != "SUCCESS" ]]; then exit 1
+        run: docker run --network integration_testing_default fiitteam8/tester
           
