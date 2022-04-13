@@ -4,7 +4,7 @@ import os
 
 MONGODB_USER = "test"
 MONGODB_PASSWORD = "test"
-MONGODB_SERVER = "mongo_db"
+MONGODB_SERVER = "localhost"
 MONGODB_PORT = 27017
 
 MONGODB_URI = "mongodb://{user}:{password}@{server_url}:{port}/".format(user=MONGODB_USER, 
@@ -16,7 +16,7 @@ MONGODB_DB = "ams"
 MONGODB_COLLECTION = "articles"
 
 ES_PROTOCOL = "https"
-ES_HOST = "es01"
+ES_HOST = "localhost"
 ES_PORT = 9200
 ES_INDEX_NAME = "articles_index"
 ES_USER = "elastic"
@@ -29,6 +29,11 @@ my_collection = my_database[MONGODB_COLLECTION]
 
 # test if number of documents in MongoDB is the same as number of documents indexed in Elasticsearch
 def test_articles_equal():
+    mydict = { "html": "sdfsdfsdf", "publish": "Lowstreet 27", "link":"sdfgdfsg", "region":"lol", "language":"haha" }
+
+    x = my_collection.insert_one(mydict)
+
+    print(x.inserted_id)
 
     # number of documents in MongoDB collection
     mongodb_count = my_collection.find().count()
