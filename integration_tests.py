@@ -4,7 +4,7 @@ import os
 
 MONGODB_USER = "test"
 MONGODB_PASSWORD = "test"
-MONGODB_SERVER = "localhost"
+MONGODB_SERVER = "mongo_db"
 MONGODB_PORT = 27017
 
 MONGODB_URI = "mongodb://{user}:{password}@{server_url}:{port}/".format(user=MONGODB_USER, 
@@ -16,7 +16,7 @@ MONGODB_DB = "ams"
 MONGODB_COLLECTION = "articles"
 
 ES_PROTOCOL = "https"
-ES_HOST = "localhost"
+ES_HOST = "es01"
 ES_PORT = 9200
 ES_INDEX_NAME = "articles_index"
 ES_USER = "elastic"
