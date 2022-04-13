@@ -17,10 +17,10 @@ jobs:
       - name: Build the stack
         run: docker-compose --env-file testing.env up -d
       
-      - name: Sleep for 60s seconds
+      - name: Sleep for 10s seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '60s'
+          time: '10s'
       
       - name: Install dependencies
         run: |
@@ -44,5 +44,5 @@ jobs:
           time: '10s'
         
       - name: Executing integration tests
-        run: docker run --network integration_testing_default fiitteam8/tester
+        run: docker run --entrypoint ping --network integration_testing_default fiitteam8/tester -c 4 mongo_db
           
