@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          docker network ls
+          ping -c 4 www.google.co.in
       
       - name: Scraping articles
         run: curl -u test:test localhost:6800/schedule.json -d spider=news_spider -d project=default -d search_from=2022-04-04 -d search_to=2022-04-05 -d locale=en-gb -d crimes_file=list_of_crimes_english.txt
