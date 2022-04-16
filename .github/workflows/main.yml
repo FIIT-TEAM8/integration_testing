@@ -30,7 +30,7 @@ jobs:
       - name: Sleep for 20 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '350s'
+          time: '20s'
       
       - name: Stopping scraper
         run: curl -u test:test http://localhost:6800/cancel.json -d project=default -d job={}
