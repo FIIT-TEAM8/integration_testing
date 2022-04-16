@@ -10,8 +10,7 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    permissions:
-      contents: read
+    permissions: {}
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
@@ -23,9 +22,7 @@ jobs:
           time: '10s'
       
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          docker run --entrypoint ping --network integration_testing_default fiitteam8/mongo_db -c 4 es01
+        run: pip install -r requirements.txt
       
       - name: Scraping articles
         run: curl -u test:test localhost:6800/schedule.json -d spider=news_spider -d project=default -d search_from=2022-04-04 -d search_to=2022-04-05 -d locale=en-gb -d crimes_file=list_of_crimes_english.txt
