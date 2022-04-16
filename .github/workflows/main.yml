@@ -10,7 +10,10 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    permissions: write-all
+    permissions:
+      contents: read
+      packages: write
+      
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
