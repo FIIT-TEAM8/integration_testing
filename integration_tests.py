@@ -1,14 +1,15 @@
 from pymongo import MongoClient
 import requests
 import os
-import settings
 
-# connect to local MongoDB container
-local_mongo = MongoClient(settings.LOCAL_MONGO_CONN_STRING)
-local_db = local_mongo[settings.remote_mongo_database]
-local_collection = local_db[settings.remote_mongo_collection]
-
-MONGODB_URI = settings.MONGODB_URI
+MONGO_HOST = "mongo_db"
+MONGO_PORT = 27017
+MONGO_USER = "test"
+MONGO_PASSWORD = "test"
+MONGODB_URI = "mongodb://{user}:{password}@{server_url}:{port}/".format(user=MONGO_USER, 
+                                                                        password=MONGO_PASSWORD, 
+                                                                        server_url=MONGO_HOST, 
+                                                                        port=MONGO_PORT)
 
 MONGODB_DB = "ams"
 MONGODB_COLLECTION = "articles"
