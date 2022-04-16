@@ -12,6 +12,7 @@ jobs:
     timeout-minutes: 10
     permissions: write-all
     steps:
+      - uses: actions/checkout@v2
       - name: Build the stack
         run: docker-compose --env-file testing.env up -d
       
@@ -29,7 +30,7 @@ jobs:
       - name: Sleep for 20 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '20s'
+          time: '350s'
       
       - name: Stopping scraper
         run: curl -u test:test http://localhost:6800/cancel.json -d project=default -d job={}
