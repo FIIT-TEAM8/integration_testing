@@ -9,6 +9,7 @@ jobs:
   build:
     name: build
     runs-on: ubuntu-latest
+    container: ubuntu
     timeout-minutes: 10
     permissions:
       contents: read
