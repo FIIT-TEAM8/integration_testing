@@ -40,7 +40,7 @@ jobs:
         with:
           time: '10s'
         
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v2
       - name: Executing integration tests
         run: docker run --network integration_testing_default fiitteam8/tester
           
