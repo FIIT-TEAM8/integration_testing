@@ -29,12 +29,6 @@ my_collection = my_database[MONGODB_COLLECTION]
 
 # test if number of documents in MongoDB is the same as number of documents indexed in Elasticsearch
 def test_articles_equal():
-    mydict = { "html": "sdfsdfsdf", "publish": "Lowstreet 27", "link":"sdfgdfsg", "region":"lol", "language":"haha" }
-
-    x = my_collection.insert_one(mydict)
-
-    print(x.inserted_id)
-
     # number of documents in MongoDB collection
     mongodb_count = my_collection.find().count()
     print("Number of documents in MongoDB collection: ", mongodb_count)
