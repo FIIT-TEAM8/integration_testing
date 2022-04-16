@@ -22,7 +22,7 @@ jobs:
       - name: Sleep for 10s seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '900s'
+          time: '20s'
       
       - name: Install dependencies
         run: pip install -r requirements.txt
