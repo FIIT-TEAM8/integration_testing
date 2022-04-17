@@ -44,5 +44,6 @@ jobs:
           time: '5s'
         
       - name: Executing integration tests
-        run: docker run --network integration_testing_default fiitteam8/tester
+        #run: docker run --network integration_testing_default fiitteam8/tester
+        run: python integration_tests.py
           
