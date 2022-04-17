@@ -32,26 +32,29 @@ def test_articles_equal():
     mongodb_count = my_collection.find().count()
     print("Number of documents in MongoDB collection: ", mongodb_count)
 
-    ES_SEARCH_STRING = "{protocol}://{host}:{port}/{index}/_count".format(
-        protocol=ES_PROTOCOL,
-        host=ES_HOST,
-        port=ES_PORT,
-        index=ES_INDEX_NAME
-        )
+    try:
+        ES_SEARCH_STRING = "{protocol}://{host}:{port}/{index}/_count".format(
+            protocol=ES_PROTOCOL,
+            host=ES_HOST,
+            port=ES_PORT,
+            index=ES_INDEX_NAME
+            )
 
-    resp = requests.get(ES_SEARCH_STRING, 
+        resp = requests.get(ES_SEARCH_STRING, 
                 verify=False, 
                 auth=(ES_USER, ES_PASSWORD))
     
-    if resp:
-        # number of documents in Elasticsearch index from response
-        elastic_count = int(resp.text.split(",")[0].split(":")[1])
+        if resp:
+            # number of documents in Elasticsearch index from response
+            elastic_count = int(resp.text.split(",")[0].split(":")[1])
 
-        print ('HTTP code:', resp.status_code)
-        print ('Number of documents in Elasticsearch:', elastic_count)
+            print ('HTTP code:', resp.status_code)
+            print ('Number of documents in Elasticsearch:', elastic_count)
 
-        if elastic_count == mongodb_count:
-            return 0
+            if elastic_count == mongodb_count:
+                return 0
+    except:
+        return 1
 
     return 1
 
