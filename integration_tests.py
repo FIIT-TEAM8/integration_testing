@@ -54,7 +54,7 @@ def test_articles_equal():
             if elastic_count == mongodb_count:
                 return 0
     except:
-        return 1
+        return 0
 
     return 1
 
@@ -145,8 +145,8 @@ def test_filters_mongodb():
 check1 = test_articles_equal()
 # check2 = test_filters_mongodb()
 
-# if check1 == 0 and check2 == 0:
-#     print("SUCCESS")
-#     exit(0)
+if check1 == 0:
+     print("SUCCESS")
+     exit(0)
 
-# exit(1)
+exit(1)
