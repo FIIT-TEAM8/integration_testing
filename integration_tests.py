@@ -41,35 +41,6 @@ def test_articles_equal():
             port=ES_PORT,
             index=ES_INDEX_NAME
             )
-    # LOCAL_ELASTIC_CONNECTION_STRING = "{protocol}://{username}:{password}@{host}:{port}/".format(
-    #     protocol="https",
-    #     username="elastic",
-    #     password="test",
-    #     host="es01",
-    #     port=9200
-    # )   
-
-    # local_es = Elasticsearch(hosts=LOCAL_ELASTIC_CONNECTION_STRING, verify_certs=False, max_retries=10, retry_on_timeout=True)
-
-    # i = 0
-        # # waiting for elastic
-        # while not local_es.ping():
-        #     print("Elastic still not up. Waiting 10 seconds...")
-        #     i += 1
-
-        #     if i == 3:
-        #         break
-        #     time.sleep(10)
-        
-    # doc = {
-    #         'title': 'asdasdad',
-    #         'html': 'testing',
-    #         'link': 'sdfsdfsdf',
-    #     }
-    # resp = local_es.index(index="test-index", id=1, document=doc)
-    # print(resp['result'])
-
-    # print("XXXXXX: ", local_es.cat.count(index="test-index", params={"format": "json"}))
 
     resp = requests.get(ES_SEARCH_STRING, 
                 verify=False, 
@@ -86,8 +57,6 @@ def test_articles_equal():
                 return 0
     else:
         print("XXX")
-    # except:
-    #     return 1
 
     return 1
 
@@ -175,10 +144,10 @@ def test_filters_mongodb():
     
     return 0
 
-check1 = test_articles_equal()
-# check2 = test_filters_mongodb()
+#check1 = test_articles_equal()
+check2 = test_filters_mongodb()
 
-if check1 == 0:
+if check2 == 0:
      print("SUCCESS")
      exit(0)
 
