@@ -34,24 +34,24 @@ def test_articles_equal():
     mongodb_count = my_collection.find().count()
     print("Number of documents in MongoDB collection: ", mongodb_count)
 
-    # try:
-    ES_SEARCH_STRING = "{protocol}://{host}:{port}/{index}/_count".format(
+    try:
+        ES_SEARCH_STRING = "{protocol}://{host}:{port}/{index}/_count".format(
             protocol=ES_PROTOCOL,
             host=ES_HOST,
             port=ES_PORT,
             index=ES_INDEX_NAME
             )
-    LOCAL_ELASTIC_CONNECTION_STRING = "{protocol}://{username}:{password}@{host}:{port}/".format(
-        protocol="https",
-        username="elastic",
-        password="test",
-        host="es01",
-        port=9200
-    )   
+    # LOCAL_ELASTIC_CONNECTION_STRING = "{protocol}://{username}:{password}@{host}:{port}/".format(
+    #     protocol="https",
+    #     username="elastic",
+    #     password="test",
+    #     host="es01",
+    #     port=9200
+    # )   
 
-    local_es = Elasticsearch(hosts=LOCAL_ELASTIC_CONNECTION_STRING, verify_certs=False, max_retries=10, retry_on_timeout=True)
+    # local_es = Elasticsearch(hosts=LOCAL_ELASTIC_CONNECTION_STRING, verify_certs=False, max_retries=10, retry_on_timeout=True)
 
-    i = 0
+    # i = 0
         # # waiting for elastic
         # while not local_es.ping():
         #     print("Elastic still not up. Waiting 10 seconds...")
@@ -61,29 +61,31 @@ def test_articles_equal():
         #         break
         #     time.sleep(10)
         
-    doc = {
-            'title': 'asdasdad',
-            'html': 'testing',
-            'link': 'sdfsdfsdf',
-        }
-    resp = local_es.index(index="test-index", id=1, document=doc)
-    print(resp['result'])
+    # doc = {
+    #         'title': 'asdasdad',
+    #         'html': 'testing',
+    #         'link': 'sdfsdfsdf',
+    #     }
+    # resp = local_es.index(index="test-index", id=1, document=doc)
+    # print(resp['result'])
 
-    print("XXXXXX: ", local_es.cat.count(index="test-index", params={"format": "json"}))
+    # print("XXXXXX: ", local_es.cat.count(index="test-index", params={"format": "json"}))
 
-        # resp = requests.get(ES_SEARCH_STRING, 
-        #         verify=False, 
-        #         auth=(ES_USER, ES_PASSWORD))
+        resp = requests.get(ES_SEARCH_STRING, 
+                verify=False, 
+                auth=(ES_USER, ES_PASSWORD))
     
-        # if resp:
-        #     # number of documents in Elasticsearch index from response
-        #     elastic_count = int(resp.text.split(",")[0].split(":")[1])
+        if resp:
+            # number of documents in Elasticsearch index from response
+            elastic_count = int(resp.text.split(",")[0].split(":")[1])
 
-        #     print ('HTTP code:', resp.status_code)
-        #     print ('Number of documents in Elasticsearch:', elastic_count)
+            print ('HTTP code:', resp.status_code)
+            print ('Number of documents in Elasticsearch:', elastic_count)
 
-        #     if elastic_count == mongodb_count:
-        #         return 0
+            if elastic_count == mongodb_count:
+                return 0
+    except:
+        return 1
 
     return 1
 
