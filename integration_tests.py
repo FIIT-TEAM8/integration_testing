@@ -4,7 +4,7 @@ from elasticsearch import Elasticsearch
 import requests
 import time
 
-MONGO_HOST = "mongo_db"
+MONGO_HOST = "localhost"
 MONGO_PORT = 27017
 MONGO_USER = "test"
 MONGO_PASSWORD = "test"
@@ -17,7 +17,7 @@ MONGODB_DB = "ams"
 MONGODB_COLLECTION = "articles"
 
 ES_PROTOCOL = "https"
-ES_HOST = "es01"
+ES_HOST = "localhost"
 ES_PORT = 9200
 ES_INDEX_NAME = "articles_index"
 ES_USER = "elastic"
@@ -34,8 +34,8 @@ def test_articles_equal():
     mongodb_count = my_collection.find().count()
     print("Number of documents in MongoDB collection: ", mongodb_count)
 
-    try:
-        ES_SEARCH_STRING = "{protocol}://{host}:{port}/{index}/_count".format(
+    # try:
+    ES_SEARCH_STRING = "{protocol}://{host}:{port}/{index}/_count".format(
             protocol=ES_PROTOCOL,
             host=ES_HOST,
             port=ES_PORT,
@@ -71,11 +71,11 @@ def test_articles_equal():
 
     # print("XXXXXX: ", local_es.cat.count(index="test-index", params={"format": "json"}))
 
-        resp = requests.get(ES_SEARCH_STRING, 
+    resp = requests.get(ES_SEARCH_STRING, 
                 verify=False, 
                 auth=(ES_USER, ES_PASSWORD))
     
-        if resp:
+    if resp:
             # number of documents in Elasticsearch index from response
             elastic_count = int(resp.text.split(",")[0].split(":")[1])
 
@@ -84,8 +84,10 @@ def test_articles_equal():
 
             if elastic_count == mongodb_count:
                 return 0
-    except:
-        return 1
+    else:
+        print("XXX")
+    # except:
+    #     return 1
 
     return 1
 
