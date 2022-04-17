@@ -17,7 +17,7 @@ MONGODB_DB = "ams"
 MONGODB_COLLECTION = "articles"
 
 ES_PROTOCOL = "https"
-ES_HOST = "localhost"
+ES_HOST = "es01"
 ES_PORT = 9200
 ES_INDEX_NAME = "articles_index"
 ES_USER = "elastic"
