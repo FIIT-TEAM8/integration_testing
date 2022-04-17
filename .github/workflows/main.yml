@@ -38,10 +38,10 @@ jobs:
       - name: Stopping scraper
         run: curl -u test:test http://localhost:6800/cancel.json -d project=default -d job={}
       
-      - name: Sleep for 10 seconds
+      - name: Sleep for 5 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '10s'
+          time: '5s'
         
       - name: Executing integration tests
         run: docker run --network integration_testing_default fiitteam8/tester
